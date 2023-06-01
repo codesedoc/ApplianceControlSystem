@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.Homeappliancesctrl"
+    android:versionCode="1"
+    android:versionName="1.0" >
+    <!--声明蓝牙使用和管理权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <!--去掉主界面的title-->
+        <activity
+            android:name="com.Homeappliancesctrl.MainActivity"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--android:theme="@android:style/Theme.Dialog"：
+        	将第二个界面设为对话框样式 将整个activity变成对话框样式出现-->
+        <!--configChanges="orientation|keyboardHidden"：
+        	横竖屏切换时，禁止重启activity，否则见面上根据蓝牙设备动态向acitvity中添加的组件就消失了了，
+          	会造成设备已经被扫描却无法显示的后果，但效果好像没用-->
+        <activity 
+            android:name="com.Homeappliancesctrl.GetBTDevice"
+            android:label="选取连接设备"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden"
+            >
+        </activity>
+    </application>
+
+</manifest>

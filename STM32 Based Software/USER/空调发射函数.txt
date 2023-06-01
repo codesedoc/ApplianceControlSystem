@@ -1,0 +1,155 @@
+u8 airModel=2;
+u8 airPower=0;
+u8 airSpeed=1;
+u8 airTempture=0;
+u8 airUDSweep=0;
+u8 airLRSweep=0;
+u16 airFixValue=0x128;
+u16 airFixValue2=0x138;
+void airInfraredSendGroupData(u16 data,u8 leng){
+	u8 j=0;
+	for(j=0;j<leng;j++)
+	{
+		if(data&0x01)
+			SendOneBit(INFRARED_HIGH);
+		else
+			SendOneBit(INFRARED_LOW);
+		data>>=1;
+	}
+}
+void airInfraredSendData(void){
+	u8 i=0,t;
+	
+	u16 dataTemp;
+	u8 dataLengthTemp=1;
+	if(airPower==0)
+		airPower=1;
+	else
+		airPower=0;
+	//使能计数器
+	TIM_Cmd(TIM2,ENABLE);
+	for(t=0;t<2;t++){
+		SendOneBit(INFRARED_START_CODE);
+		//for(i=0;i<67;i++){SendOneBit(INFRARED_HIGH);}
+		for(i=0;i<68;){
+			switch(i){
+				case 0:
+					dataLengthTemp=3;
+					dataTemp=airModel;
+					airInfraredSendGroupData(dataTemp,dataLengthTemp);
+					i+=dataLengthTemp;
+				break;
+				
+				case 3:
+					if(airPower)
+						SendOneBit(INFRARED_HIGH);
+					else
+						SendOneBit(INFRARED_LOW);
+					i++;
+				break;
+				
+				case 4:
+					dataLengthTemp=2;
+					dataTemp=airSpeed;
+					airInfraredSendGroupData(dataTemp,dataLengthTemp);
+					i+=dataLengthTemp;
+				break;
+				
+				case 6:
+					if(airUDSweep!=0 ||airLRSweep!=0)
+						SendOneBit(INFRARED_HIGH);
+					else
+						SendOneBit(INFRARED_LOW);
+					i++;
+				break;
+				
+				case 8:
+					dataLengthTemp=4;
+					dataTemp=airTempture;
+					airInfraredSendGroupData(dataTemp,dataLengthTemp);
+					i+=dataLengthTemp;
+				break;
+				
+				case 25:
+					dataLengthTemp=10;
+					if(t==0){
+						dataTemp=airFixValue;
+						}
+					else{
+						dataTemp=airFixValue2;
+					}
+					
+					airInfraredSendGroupData(dataTemp,dataLengthTemp);
+					i+=dataLengthTemp;
+				break;
+				
+				case 35:
+					SendOneBit(INFRARED_CONNECT_CODE);
+					i++;
+				break;
+				
+				
+				
+				case 36:
+					if(airUDSweep)
+						SendOneBit(INFRARED_HIGH);
+					else
+						SendOneBit(INFRARED_LOW);
+					i++;
+				break;
+				
+				case 40:
+					if(airLRSweep)
+						SendOneBit(INFRARED_HIGH);
+					else
+						SendOneBit(INFRARED_LOW);
+					i++;
+				break;
+				
+				break;
+				
+				case 64:
+					dataLengthTemp=4;
+					dataTemp=5+airModel-1+airTempture+airLRSweep;
+					if(airPower==0){
+						if(dataTemp&(1<<3)){
+							dataTemp&=0x7;
+						}
+						else
+							dataTemp|=0x8;
+					}
+					if(t){
+						dataTemp--;
+					}
+					airInfraredSendGroupData(dataTemp,dataLengthTemp);
+					i+=dataLengthTemp;
+				break;
+				
+				default:
+					if(t==0){
+						if(i==23||i==49)
+							SendOneBit(INFRARED_HIGH);
+						else
+							SendOneBit(INFRARED_LOW);
+					}
+					else{
+						if((i==23||i==56) &&i!=49)
+							SendOneBit(INFRARED_HIGH);
+						else
+							SendOneBit(INFRARED_LOW);
+					}
+					i++;
+				break;	
+			}
+		}
+		SendOneBit(INFRARED_OVER_CODE);
+			
+	}
+	
+	//失能计数器
+	TIM_Cmd(TIM2,DISABLE);
+}
+	
+
+
+

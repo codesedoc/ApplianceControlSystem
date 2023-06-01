@@ -1,0 +1,236 @@
+/******************************************************main.c********************************************************/
+
+u8 deviceKeyValue=0;
+u8 deviceStatus=DEVICE_WORK_STATUS;
+u8 deviceLearnStatus=DEVICE_NEW;
+struct HETotle{
+	u8 TVTotle;
+	u8 JiDingHeTotle;
+	u8 AirCtrlTotle;
+	u8 FanTotle;
+};
+struct HETotle MyHETotle={0,0,0,0};
+
+struct HEIndex{
+	u8 TVIndex;
+	u8 JiDingHeIndex;
+	u8 AirCtrlIndex;
+	u8 FanIndex;
+};
+struct HEIndex MyHEIndex={0,0,0,0};
+
+void deviceWorkStatue(void);
+void deviceOperateStatue(void);
+int main(void)
+{
+	u8 rec[AT24C256_RECEIVE_LENG_MAX]={0};
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	delay_init();
+	LedInit(); 
+	uart_init(9600);
+	at24c256Init();
+	IndependentKeyInit();
+	InfraredEmitterInit();
+	
+	printf("Hello!"); 
+	while(1) 		 
+	{
+		if(deviceKeyValue==DEVICE_STATUS_KEY){
+			deviceKeyValue=0;
+			deviceStatus++;
+			deviceStatus%=HE_KIND_MAX;	
+			if(deviceStatus>4)
+				deviceStatus=DEVICE_WORK_STATUS;
+		}
+		if(deviceStatus==DEVICE_WORK_STATUS){
+			deviceWorkStatue();
+		}
+		else{
+			deviceOperateStatue();
+		}
+		
+	}	
+}
+u16 at24c256DataAddr=20;
+void HEFraCodeWriteReady(u8 HEKind,struct HETotle totle,struct HEIndex index){
+	
+		if(deviceKeyValue==DEVICE_UP_KEY){
+			deviceKeyValue=0;
+			
+		}
+		if(deviceKeyValue==DEVICE_DOWN_KEY){
+			deviceKeyValue=0;
+			
+		}
+}
+void deviceOperateStatue(void){
+	printf("OPERATE_STATUS\n");
+	while(1){
+		if(deviceKeyValue==DEVICE_STATUS_KEY){
+			deviceKeyValue=0;
+			deviceStatus++;
+			deviceStatus%=HE_KIND_MAX;	
+			if(deviceStatus>4)
+				deviceStatus=DEVICE_WORK_STATUS;
+		}
+		if(deviceStatus==DEVICE_WORK_STATUS)
+			break;
+
+		switch(deviceStatus){
+			case DEVICE_OPERATE_STATUS_TV:
+				if(deviceKeyValue==DEVICE_LEARN_STATUS_KEY){
+					deviceKeyValue=0;
+					if(deviceLearnStatus==DEVICE_NEW)
+					{
+						deviceLearnStatus=DEVICE_OLD;
+						MyHEIndex.TVIndex=0;				
+					}
+					else
+					{
+						deviceLearnStatus=DEVICE_NEW;
+						MyHEIndex.TVIndex=MyHETotle.TVTotle;
+					}
+				}
+				break;
+		
+			case DEVICE_OPERATE_STATUS_JIDINGHE:
+				if(deviceKeyValue==DEVICE_LEARN_STATUS_KEY){
+					deviceKeyValue=0;
+					if(deviceLearnStatus==DEVICE_NEW)
+					{
+						deviceLearnStatus=DEVICE_OLD;
+						MyHEIndex.JiDingHeIndex=0;				
+					}
+					else
+					{
+						deviceLearnStatus=DEVICE_NEW;
+						MyHEIndex.JiDingHeIndex=MyHETotle.JiDingHeTotle;
+					}
+				}
+				break;
+				
+			case DEVICE_OPERATE_STATUS_AIRCOND:
+				if(deviceKeyValue==DEVICE_LEARN_STATUS_KEY){
+					deviceKeyValue=0;
+					if(deviceLearnStatus==DEVICE_NEW)
+					{
+						deviceLearnStatus=DEVICE_OLD;
+						MyHEIndex.AirCtrlIndex=0;				
+					}
+					else
+					{
+						deviceLearnStatus=DEVICE_NEW;
+						MyHEIndex.AirCtrlIndex=MyHETotle.AirCtrlTotle;
+					}
+				}
+				break;
+			case DEVICE_OPERATE_STATUS_FAN:
+				if(deviceKeyValue==DEVICE_LEARN_STATUS_KEY){
+					deviceKeyValue=0;
+					if(deviceLearnStatus==DEVICE_NEW)
+					{
+						deviceLearnStatus=DEVICE_OLD;
+						MyHEIndex.TVIndex=0;				
+					}
+					else
+					{
+						deviceLearnStatus=DEVICE_NEW;
+						MyHEIndex.TVIndex=MyHETotle.TVTotle;
+					}
+				}
+				break;
+			
+			default:
+				break;
+		}
+	}
+}
+void deviceWorkStatue(void){
+	printf("WORK_STATUS\n");
+	while(1){
+		if(deviceKeyValue==DEVICE_STATUS_KEY){
+			deviceKeyValue=0;
+			deviceStatus++;
+			deviceStatus%=HE_KIND_MAX;	
+			if(deviceStatus>4)
+				deviceStatus=DEVICE_WORK_STATUS;
+		}
+		if(deviceStatus==DEVICE_WORK_STATUS)
+			break;
+			
+	}
+}
+
+/******************************************************main.h********************************************************/
+
+#include "sys.h"
+
+
+
+
+//#define HE_TV_CODE 0x01
+//#define HE_JIDINGHE_CODE 0x02
+//#define HE_AIRCOND_CODE 0x03
+//#define HE_FAN_CODE 0x04
+
+//#define HE_TV_KEYTOAL_MAX 50
+//#define HE_JIDINGHE_KEYTOAL_MAX 50
+//#define HE_AIRCOND_KEYTOAL_MAX 20
+//#define HE_FAN_KEYTOAL_MAX 10
+
+#define HE_TV_KEYTOAL 24
+#define HE_JIDINGHE_KEYTOAL 50
+#define HE_AIRCOND_KEYTOAL 10
+#define HE_FAN_KEYTOAL 10
+
+#define DEVICE_KEY0 1
+#define DEVICE_KEY1 2
+#define DEVICE_KEY2 3
+#define DEVICE_KEY3 4
+
+#define DEVICE_STATUS_KEY DEVICE_KEY0
+#define DEVICE_LEARN_STATUS_KEY DEVICE_KEY1
+#define DEVICE_UP_KEY DEVICE_KEY2
+#define DEVICE_DOWN_KEY DEVICE_KEY3
+
+#define DEVICE_WORK_STATUS 0
+#define DEVICE_OPERATE_STATUS_TV 1
+#define DEVICE_OPERATE_STATUS_AIRCOND 2
+#define DEVICE_OPERATE_STATUS_JIDINGHE 3
+#define DEVICE_OPERATE_STATUS_FAN 4
+
+#define DEVICE_NEW 0
+#define DEVICE_OLD 1
+
+struct HEKeyToCrtl{
+	u8 ctrlCode;
+	char indication[20];
+};
+
+struct HEKeyToCrtl MyTVKeyToCrtl[25]={
+	{1,"Power"},{2,"Num0"},{3,"Num1"},{4,"Num2"},{5,"Num3"},{6,"Num4"},
+	{7,"Num5"},{8,"Num6"},{9,"Num7"},{10,"Num8"},{11,"Num9"},{12,"Up"},
+	{13,"Down"},{14,"Left"},{15,"Right"},{16,"Ok"},{17,"Menu"},{18,"Exit"},
+	{19,"ChannelAdd"},{20,"ChannelSub"},{21,"VoiceAdd"},{22,"VoiceSub"},{23,"TV"},{24,"VoiceSwitch"},{25,"Many"}
+};
+
+
+struct HouseElectricInfo{
+	char name[10];
+	u8 codeName;
+	u8 keyTotalMax;
+	u8 keyValueLengh;
+	u8 deviceTotalMax;
+};
+#define HE_KIND_MAX 10
+
+#define HE_KIND_TV 0
+#define HE_KIND_JIDINGHE 1
+#define HE_KIND_AIRCOND 2
+#define HE_KIND_FAN 3
+struct HouseElectricInfo MyHouseElectricInfo[HE_KIND_MAX]={
+	{"TV",0x01,50,8,10},
+	{"JiDinHe",0x02,50,8,10},
+	{"AirCond",0x03,20,10,10},
+	{"Fan",0x04,10,6,10}
+};

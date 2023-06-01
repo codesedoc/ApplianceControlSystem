@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000"
+	android:paddingTop="20dp"
+	android:paddingBottom="20dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/TVpowerBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/power_btn"
+                    android:padding="0dp" />
+
+                <ImageButton
+                    android:id="@+id/TVsilenceBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/silence_btn"
+                    android:padding="0dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/TVnum1Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num1_btn"
+                    android:padding="0dp" />
+
+                <ImageButton
+                    android:id="@+id/TVnum2Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num2_btn"
+                    android:padding="0dp" />
+
+                <ImageButton
+                    android:id="@+id/TVnum3Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num3_btn"
+                    android:padding="0dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/TVnum4Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num4_btn" />
+
+                <ImageButton
+                    android:id="@+id/TVnum5Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num5_btn" />
+
+                <ImageButton
+                    android:id="@+id/TVnum6Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num6_btn" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/TVnum7Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num7_btn" />
+
+                <ImageButton
+                    android:id="@+id/TVnum8Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num8_btn" />
+
+                <ImageButton
+                    android:id="@+id/TVnum9Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num9_btn" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/TVmanyBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/many_btn" />
+
+                <ImageButton
+                    android:id="@+id/TVnum0Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/num0_btn" />
+
+                <ImageButton
+                    android:id="@+id/TVtvBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/tv_btn" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical" >
+				<LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:orientation="horizontal" >
+	                
+				    <ImageButton
+                        android:id="@+id/TVupBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/up_btn2" />
+             	</LinearLayout>
+             	
+				<LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:orientation="horizontal" >
+				    
+	                <ImageButton
+                        android:id="@+id/TVleftBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/left_btn2" />
+				   <ImageButton
+                        android:id="@+id/TVokBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                      	android:background="@drawable/ok_btn2" />
+                    
+                    <ImageButton
+                        android:id="@+id/TVrightBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/right_btn2" />
+                    
+             	</LinearLayout>
+            	
+				<LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:orientation="horizontal" >
+	                <ImageButton
+                        android:id="@+id/TVdownBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/down_btn2" />
+				  
+             	</LinearLayout>
+             	
+				<LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:orientation="horizontal" >
+	                
+	               <TextView
+	                    android:gravity="center_horizontal"
+	                    android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="主页" 
+                        android:textSize="12sp"/>
+	               <TextView
+	                    android:gravity="center_horizontal"
+	                    android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="菜单" 
+                        android:textSize="12sp"/>
+                   <TextView
+                      	android:gravity="center_horizontal"
+	                    android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="设置" 
+                        android:textSize="12sp"/>
+                   <TextView
+	                    android:gravity="center_horizontal"
+	                   	android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="返回" 
+                        android:textSize="12sp"/>
+				  
+             	</LinearLayout>
+             	
+				<LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:orientation="horizontal">  
+					<LinearLayout 
+					    android:layout_weight="1"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:gravity="center_horizontal"
+					    >
+					     <ImageButton
+		               		android:id="@+id/TVhomeBtn"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                       	android:background="@drawable/function_btn"/>
+					</LinearLayout>
+					
+					<LinearLayout 
+					    android:layout_weight="1"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:gravity="center_horizontal"
+					    >
+					     <ImageButton
+		               		android:id="@+id/TVmenuBtn"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                       	android:background="@drawable/function_btn"/>
+					</LinearLayout>
+					
+					<LinearLayout 
+					    android:layout_weight="1"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:gravity="center_horizontal"
+					    >
+					     <ImageButton
+	                        android:id="@+id/TVsetBtn"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                       	android:background="@drawable/function_btn"/>
+					</LinearLayout>
+					
+					<LinearLayout 
+					    android:layout_weight="1"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:gravity="center_horizontal"
+					    >
+					    <ImageButton
+		               		android:id="@+id/TVbackBtn"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                       	android:background="@drawable/function_btn"/>
+					</LinearLayout>
+             	</LinearLayout>
+             	
+				
+				<LinearLayout 
+				    android:layout_marginTop="10dp"
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:orientation="horizontal"
+				    >
+					<LinearLayout 
+					    android:layout_weight="1"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:orientation="vertical"
+					   	android:gravity="center"
+				    >
+				    
+					<ImageButton
+	                    android:id="@+id/TVvoiceAddBtn"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:background="@drawable/voice_add"/>
+					
+					<ImageButton
+	                        android:id="@+id/TVvoiceSubBtn"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                       	android:background="@drawable/voice_sub"/>
+						
+					</LinearLayout>
+					
+					<LinearLayout 
+					    android:layout_weight="1"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:orientation="vertical"
+					    android:gravity="center"
+					    >
+					    
+						<ImageButton
+		                        android:id="@+id/TVchannelAddBtn"
+		                        android:layout_width="wrap_content"
+		                        android:layout_height="wrap_content"
+		                       	android:background="@drawable/channel_add"/>
+						<ImageButton
+		                        android:id="@+id/TVchannelSubBtn"
+		                        android:layout_width="wrap_content"
+		                        android:layout_height="wrap_content"
+		                       	android:background="@drawable/channel_sub"/>
+						
+					</LinearLayout>
+				</LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/background">   
+    <TextView 
+        android:id="@+id/mainTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="未连接红外中继器！"
+        android:textSize="30sp"
+        android:textColor="#00f"
+        android:background="#0000"
+        />   
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/connectBtn"
+         android:layout_below="@+id/mainTv"
+         android:background="#66363636"
+         android:scrollbars="none" >    
+   		<LinearLayout 
+   		    android:layout_gravity="center_vertical"
+            android:id="@+id/other_ll"
+            android:layout_width="match_parent"
+       		android:layout_height="wrap_content"
+       		android:orientation="vertical"
+       		android:layout_margin="10dp"
+            >   
+        </LinearLayout>  
+    </ScrollView>
+    <Button
+        android:id="@+id/connectBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="连接" />
+</RelativeLayout>
